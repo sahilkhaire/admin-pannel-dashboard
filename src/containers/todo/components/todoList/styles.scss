@@ -1,0 +1,22 @@
+.todo-list-container{
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    margin: 20px;
+    .todo-name-wrapper{
+        font-weight: bolder;
+        color: #35846c;
+        font-size: large;
+        height: 26px;
+    }
+    .add-todo-wrapper{
+        height: 100px;
+        width: 100%;
+    }
+    .list-todo-wrapper{
+        width: 100%;
+        height: calc(100% - 40px - 100px - 26px);
+        overflow-y: auto;
+        background: beige;
+        padding-top: 5px;
+    }
+}

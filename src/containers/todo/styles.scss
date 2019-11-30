@@ -1,0 +1,37 @@
+.todo-container{
+    // background-image: url('https://image.freepik.com/free-photo/minimal-work-space-creative-flat-lay-photo-workspace-desk-with-sketchbook-wooden-pencil-copy-space-white-background-top-view-flat-lay-photography_1253-994.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    background: gainsboro;
+    .todo-wrapper{
+        width: 80%;
+        height: 80%;
+        background: white;
+        display: flex;
+        flex-direction: row;
+        // box-shadow: 0px 0px 8px -3px #808080;
+        box-shadow: 0px 0px 10px 3px #808080;
+        overflow: hidden;
+        .bucket-list-wrapper{
+            width: 30%;
+            height: 100%;
+            border-right:1px solid #80808040;
+        }
+        .todo-list-wrapper{
+            width: 70%;
+            height: 100%;
+        }
+    }
+}
+
+.display-flex-center{
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}

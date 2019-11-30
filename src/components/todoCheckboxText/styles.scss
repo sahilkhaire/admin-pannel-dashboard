@@ -1,0 +1,99 @@
+.checkbox-close-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .checkbox-container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 8px;
+        margin-top: 8px;
+        margin-left: 20px;
+        cursor: pointer;
+        font-size: 16px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }    
+        .check-mark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: white;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+        }
+        .checkbox-text{
+            line-height: 1.5;
+             /* These are technically the same, but use both */
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+    
+            -ms-word-break: break-all;
+            /* This is the dangerous one in WebKit, as it breaks things wherever */
+            word-break: break-all;
+            /* Instead use this non-standard one: */
+            word-break: break-word;
+    
+            /* Adds a hyphen where the word breaks, if supported (No Blink) */
+            -ms-hyphens: auto;
+            -moz-hyphens: auto;
+            -webkit-hyphens: auto;
+            hyphens: auto;
+        }
+        input:checked ~ .check-mark {
+            background-color: white;
+        }
+        .check-mark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        input:checked ~ .check-mark:after {
+            display: block;
+        }
+        input:checked ~ .checkbox-text{
+            color:#282c348a;
+            text-decoration: line-through;
+        }
+        .check-mark:after {
+            left: 7px;
+            top: 3px;
+            width: 4px;
+            height: 8px;
+            border: 1px solid #3465e8;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }
+    .close-button{
+        width: 15px;
+        height: 15px;
+        margin-right:20px;
+        display: none;
+    }
+    &:hover{
+        // box-shadow: 0px 6px 6px -4px #757575;
+        background: #35846c1c;
+    }
+    &:hover .close-button{
+        display: block;
+        width: 15px;
+        height: 15px;
+        margin-right:20px;
+    }
+    .close-button:hover{
+        cursor: pointer;
+    }
+}
