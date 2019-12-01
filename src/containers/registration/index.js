@@ -97,7 +97,7 @@ class Registration extends React.Component {
                             <button className='register-button' onClick={() => this.onSubmitClick()}>Register</button>
                         </div>
                         <div className='not-sign-up-text'>
-                            Already sign up? <span onClick={() => this.onClickLoginHere()}>click here</span>
+                            Already sign up? <span className="cursor-pointer" style={{ color: "#35846c", paddingLeft: "5px" }} onClick={() => this.onClickLoginHere()}>click here</span>
                         </div>
                     </div>
                 </div>

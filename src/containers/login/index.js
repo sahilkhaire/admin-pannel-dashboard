@@ -74,7 +74,7 @@ class Login extends React.Component {
                             <button className='login-button' onClick={() => this.onClickLogin()}>Login</button>
                         </div>
                         <div className='not-sign-up-text'>
-                            Not sign up? <span onClick={() => this.onClickRegisterHere()}>click here</span>
+                            Not sign up? <span className="cursor-pointer" style={{ color: "#35846c", paddingLeft: "5px" }} onClick={() => this.onClickRegisterHere()}>click here</span>
                         </div>
                     </div>
                 </div>

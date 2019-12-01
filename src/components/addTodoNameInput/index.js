@@ -15,8 +15,10 @@ class AddTodoInput extends React.Component {
         this.setState({ value: e.target.value })
     }
     addButtonClick = () => {
-        this.props.addButtonClick(this.state.value);
-        this.setState({ value: "" })
+        if(this.state.value){
+            this.props.addButtonClick(this.state.value);
+            this.setState({ value: "" })
+        }
     }
     onKeyDown = (e) => {
         if (e.keyCode == 13 && this.state.value) {
@@ -50,7 +52,7 @@ class AddTodoInput extends React.Component {
         else {
             return (
                 <div className="name-input-wrapper">
-                    <img className="add-icon" src={AddIcon} style={{ width: '20px', height: "20px" }} onClick={() => this.addButtonClick()} />
+                    <img className="add-icon cursor-pointer" src={AddIcon} style={{ width: '20px', height: "20px" }} onClick={() => this.addButtonClick()} />
                     <input onKeyDown={this.onKeyDown} type="text" value={this.state.value} placeholder="Add task" className="name-input" onChange={this.onInputChange} />
                 </div>
             );

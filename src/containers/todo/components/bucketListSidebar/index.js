@@ -68,7 +68,9 @@ class BucketList extends React.Component {
                         <img
                             src={showAddBucketInput ? closeIcon : addBucket}
                             onClick={() => this.onClickAddBucket()}
-                            style={{ width: '20px', height: "20px" }} />
+                            style={{ width: '20px', height: "20px" }}
+                            className='cursor-pointer'
+                        />
                     </div>
                     {showAddBucketInput && <div>
                         <AddTodoInput
@@ -109,11 +111,15 @@ class BucketList extends React.Component {
                                     <img
                                         src={EditIcon}
                                         onClick={() => this.editBucketNameClick(bucket.bucket_name, bucket.id)}
-                                        style={{ width: '20px', height: "20px", marginRight: "5px" }} />
+                                        style={{ width: '20px', height: "20px", marginRight: "5px" }}
+                                        className='cursor-pointer'
+                                    />
                                     <img
                                         src={deleteIcon}
                                         onClick={() => this.props.onDeleteBucketClick(bucket.id)}
-                                        style={{ width: '20px', height: "20px" }} />
+                                        style={{ width: '20px', height: "20px" }}
+                                        className='cursor-pointer'
+                                    />
                                 </div>
                             </div>
                         }
