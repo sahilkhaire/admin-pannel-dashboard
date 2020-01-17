@@ -4,7 +4,7 @@
 import axios from "axios";
 import qs from "qs";
 
-const BASE_URL = 'http://35.200.135.117';
+const BASE_URL = process.env.URL || 'https://bb8a9469.ngrok.io';
 
 /**
  *
@@ -26,11 +26,8 @@ function parseError(messages) {
  * parse response
  */
 function parseBody(response) {
-  //  if (response.status === 200 && response.data.status.code === 200) { // - if use custom status code
   if (response.status === 200) {
     return response;
-  } else if (response.status === 401) {
-    getNewAccessToken();
   } else {
     return this.parseError(response.data.messages);
   }
@@ -52,7 +49,6 @@ instance.interceptors.request.use(
     config.headers = {
       Accept: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("token")}`
     };
     return config;
   },
@@ -65,40 +61,10 @@ instance.interceptors.response.use(
   response => parseBody(response),
   error => {
     console.log("Error status", error.response);
-    // return Promise.reject(error)
-    if (error.response) {
-      if (error.response.status == 401) {
-        // getNewAccessToken();
-        localStorage.removeItem('token');
-        localStorage.removeItem('refreshtkn');
-        window.location.reload();
-      }
-      return parseError(error.response.data);
-    }
     return Promise.reject(error);
   }
 );
 
-function getNewAccessToken() {
-  instance
-    .post(`${BASE_URL}/todo-app-backend/login/`, {
-      refreshToken: localStorage.getItem('refreshtkn')
-    }).then((res) => {
-      if (res.data.hasOwnProperty('status') && res.data.status) {
-        localStorage.setItem('token', res.data.access_token);
-        localStorage.setItem('refreshtkn', res.data.refresh_token);
-        window.location.reload();
-      } else {
-        localStorage.removeItem('token');
-        localStorage.removeItem('refreshtkn');
-        window.location.reload();
-      }
-    }).catch((err) => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshtkn');
-      window.location.reload();
-    });
-}
 
 
 export const http = instance;

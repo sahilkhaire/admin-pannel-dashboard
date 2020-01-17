@@ -1,4 +1,4 @@
 const constants = {
-    BASE_URL: 'http://35.200.135.117'
+    BASE_URL: process.env.URL || 'https://bb8a9469.ngrok.io'
 };
 export default constants;

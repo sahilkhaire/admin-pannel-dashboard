@@ -1,7 +1,7 @@
 import querystring from "query-string";
 import { http } from "./axiosInstance";
 
-const API_ENDPOINT = 'http://35.200.135.117';
+const API_ENDPOINT = process.env.URL || 'https://bb8a9469.ngrok.io';
 
 function request(props) {
   const { url, init, query, option } = props;

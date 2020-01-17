@@ -5,107 +5,78 @@ import appTypes from "./types";
 import api from "../../api/api";
 
 
-function* getBucketList(action) {
+function* getMentorList(action) {
   try {
-    const res = yield call(api.get, 'todo-app-backend/bucket-list/');
-    if (res.data.status) {
-      yield put(actions.getBucketListSuccess(res.data));
+    const res = yield call(api.get, 'mentor');
+    if (res.status) {
+      yield put(actions.getMentorListSuccess(res.data));
     } else {
-      yield put(actions.getBucketListError(res.data));
+      yield put(actions.getMentorListError(res.data));
     }
   } catch (e) {
-    yield put(actions.getBucketListError(e));
-  }
-}
-function* createBucketList(action) {
-  try {
-    const res = yield call(api.post, 'todo-app-backend/bucket-list/', action.payload);
-    if (res.data.status) {
-      yield put(actions.getBucketListRequest());
-      yield put(actions.createBucketListSuccess(res.data));
-    } else {
-      yield put(actions.createBucketListError(res.data));
-    }
-  } catch (e) {
-    yield put(actions.createBucketListError(e));
-  }
-}
-function* updateBucketList(action) {
-  try {
-    const res = yield call(api.patch, 'todo-app-backend/bucket-list/', action.payload);
-    if (res.data.status) {
-      yield put(actions.getBucketListRequest());
-      yield put(actions.updateBucketListSuccess(res.data));
-    } else {
-      yield put(actions.updateBucketListError(res.data));
-    }
-  } catch (e) {
-    yield put(actions.updateBucketListError(e));
-  }
-}
-function* deleteBucketList(action) {
-  try {
-    const res = yield call(api.delete, 'todo-app-backend/bucket-list/' + action.payload + "/");
-    if (res.data.status) {
-      yield put(actions.getBucketListRequest());
-      yield put(actions.deleteBucketListSuccess(res.data));
-    } else {
-      yield put(actions.deleteBucketListError(res.data));
-    }
-  } catch (e) {
-    yield put(actions.deleteBucketListError(e));
+    yield put(actions.getMentorListError(e));
   }
 }
 
-function* createTask(action) {
+function* addMentor(action) {
   try {
-    const res = yield call(api.post, 'todo-app-backend/todo-list/', action.payload);
-    if (res.data.status) {
-      yield put(actions.getBucketListRequest());
-      yield put(actions.createTaskSuccess(res.data));
+    const res = yield call(api.post, 'mentor/', action.payload);
+    if (res.status) {
+      console.log("1111111111111")
+      yield put(actions.getMentorListSuccess(res.data));
     } else {
-      yield put(actions.createTaskError(res.data));
+      console.log("222222222")
+      yield put(actions.getMentorListError(res.data));
     }
   } catch (e) {
-    yield put(actions.createTaskError(e));
+    console.log("3333333333333", e)
+    yield put(actions.getMentorListError(e));
   }
 }
-
-function* updateTask(action) {
+function* deleteMentor(action) {
   try {
-    const res = yield call(api.patch, 'todo-app-backend/todo-list/', action.payload);
-    if (res.data.status) {
-      yield put(actions.getBucketListRequest());
-      yield put(actions.updateTaskSuccess(res.data));
+    const res = yield call(api.delete, 'mentor/' + action.payload.mentor_id);
+    if (res.status) {
+      yield put(actions.getMentorListSuccess(res.data));
+      if (action.payload.new_active_id) {
+        yield put(actions.updateActiveMentorRequest(action.payload.new_active_id));
+      }
     } else {
-      yield put(actions.updateTaskError(res.data));
+      yield put(actions.getMentorListError(res.data));
     }
   } catch (e) {
-    yield put(actions.updateTaskError(e));
+    yield put(actions.getMentorListError(e));
   }
 }
-
+function* addTask(action) {
+  try {
+    const res = yield call(api.post, 'mentor/task', action.payload);
+    if (res.status) {
+      yield put(actions.getMentorListSuccess(res.data));
+    } else {
+      yield put(actions.getMentorListError(res.data));
+    }
+  } catch (e) {
+    yield put(actions.getMentorListError(e));
+  }
+}
 function* deleteTask(action) {
   try {
-    const res = yield call(api.delete, 'todo-app-backend/todo-list/' + action.payload + "/");
-    if (res.data.status) {
-      yield put(actions.getBucketListRequest());
-      yield put(actions.deleteTaskSuccess(res.data));
+    const res = yield call(api.delete, `mentor/task/${action.payload.mentor_id}/${action.payload.task_id}`);
+    if (res.status) {
+      yield put(actions.getMentorListSuccess(res.data));
     } else {
-      yield put(actions.deleteTaskError(res.data));
+      yield put(actions.getMentorListError(res.data));
     }
   } catch (e) {
-    yield put(actions.deleteTaskError(e));
+    yield put(actions.getMentorListError(e));
   }
 }
 
-
 export default function* appSaga() {
-  yield takeLatest(appTypes.GET_BUCKET_LIST_REQUEST, getBucketList);
-  yield takeLatest(appTypes.CREATE_BUCKET_LIST_REQUEST, createBucketList);
-  yield takeLatest(appTypes.UPDATE_BUCKET_LIST_REQUEST, updateBucketList);
-  yield takeLatest(appTypes.DELETE_BUCKET_LIST_REQUEST, deleteBucketList);
-  yield takeLatest(appTypes.CREATE_TODO_REQUEST, createTask);
-  yield takeLatest(appTypes.UPDATE_TODO_REQUEST, updateTask);
-  yield takeLatest(appTypes.DELETE_TODO_REQUEST, deleteTask);
+  yield takeLatest(appTypes.GET_MENTOR_LIST_REQUEST, getMentorList);
+  yield takeLatest(appTypes.ADD_MENTOR_REQUEST, addMentor);
+  yield takeLatest(appTypes.DELETE_MENTOR_REQUEST, deleteMentor);
+  yield takeLatest(appTypes.ADD_TASK_REQUEST, addTask);
+  yield takeLatest(appTypes.DELETE_TASK_REQUEST, deleteTask);
 }

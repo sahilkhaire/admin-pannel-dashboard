@@ -1,0 +1,56 @@
+.admin-panel-container{
+    width:100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    .mentors-and-task-wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        height: calc(100% - 100px);
+        background: gray;
+        .mentor-container{
+            width: 20%;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid darkgray;
+            background: white;
+            .add-mentor-wrapper{
+                width: 100%;
+                box-sizing: border-box;
+                padding: 10px;
+                border-bottom: 1px solid lightgray;
+                height: 102px;
+                .mentor-list-name{
+                    font-size: 18px;
+                    padding-bottom: 12px;
+                    padding-top: 12px;
+                    font-weight: bold;
+                }
+            }
+
+        }
+        .task-container{
+            width: 80%;
+            height: 100%;
+            overflow-y: auto;
+            background: white;
+            .task-header{
+                height: 50px;
+                align-items: center;
+                display: flex;
+                padding-left: 33px;
+                font-size: 18px;
+                border-bottom: 1px solid lightgray;
+                font-weight: bold;
+                justify-content: space-between;
+            }
+            .add-task-input-container{
+                width: 100%;
+                height: 60px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}

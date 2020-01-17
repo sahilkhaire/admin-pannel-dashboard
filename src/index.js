@@ -12,7 +12,7 @@ const store = configureStore({});
 const render = Component => {
   ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter basename="/todo-app">
+      <BrowserRouter basename="/">
         <Component />
       </BrowserRouter>
     </Provider>,

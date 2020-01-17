@@ -3,18 +3,14 @@ import './App.css';
 
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import Todo from "./containers/todo";
-import Login from "./containers/login";
-import Registration from './containers/registration';
+import Main from "./containers/Main";
 
 
 function App() {
   return (
     <Switch>
-      <Route path="/login" component={Login} />
-      <Route path="/todo-list" component={Todo} />
-      <Route path="/register" component={Registration} />
-      <Redirect to="/todo-list" />
+      <Route path="/" component={Main} />
+      <Redirect to="/" />
     </Switch>
   );
 }

@@ -1,0 +1,13 @@
+.header-wrapper{
+    width: 100%;
+    height: 100px;
+    background-color: darkcyan;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    .head-name{
+        font-size: 24px;
+        padding-left: 40px;
+        color: aliceblue;
+    }
+}
